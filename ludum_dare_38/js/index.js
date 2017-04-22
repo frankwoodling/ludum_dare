@@ -1,11 +1,24 @@
-var ctx = document.getElementById("ctx").getContext("2d");
-ctx.font = '30px Arial';
+var width = 100,
+  height = 100,
+  frames = 4,
 
-var HEIGHT = 500;
-var WIDTH = 500;
+  currentFrame = 0,
 
-var frameCount = 0;
+  canvas = document.getElementById("myCanvas");
 
-var score = 0;
-var player;
+ctx = canvas.getContext("2d");
+image = new Image();
+image.src = '/img/sprite.png';
 
+var draw = function(){
+  ctx.clearRect(0, 0, width, height);
+  ctx.drawImage(image, 0, height * currentFrame, width, height, 0, 0, width, height);
+
+  if (currentFrame == frames) {
+    currentFrame = 0;
+  } else {
+    currentFrame++;
+  }
+};
+
+setInterval(draw, 100);
