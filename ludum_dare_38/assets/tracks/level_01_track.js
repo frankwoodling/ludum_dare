@@ -3,7 +3,7 @@ var track_01 = [
   // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], // test delete this line
   // row 2
-  [0, 0, 0, 'road_asphalt06.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt87.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt04.png', 'road_asphalt07.png', 0, 0, 0, 0],
+  [0, 0, 0, 6, 4, 4, 4, 4, 4, 4, 87, 4, 4, 4, 4, 4, 4, 4, 4, 7, 0, 0, 0, 0],
   // row 3
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   // row 4

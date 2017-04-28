@@ -4,31 +4,19 @@ ctx = canvas.getContext("2d");
 spritesheet_asphalt = new Image();
 spritesheet_asphalt.src = './assets/tiles/sprite_tiles_asphalt.png';
 
-// sprite sheet should be 10 tiles wide
+// sprite sheet must be horizontal
 var draw_spritesheet_tiles = function(sprite_sheet, sprite_width, sprite_height) {
 
-  for(var i = 0; i <= 24; i++) {
-    console.log("i:" + i);
-    ctx.drawImage(spritesheet_asphalt, ((track_01[0][i]%10)-1)*sprite_height, Math.floor(track_01[0][i]/10)*sprite_width, sprite_width, sprite_height, i*128, 0, sprite_width, sprite_height)
+  for(var i = 0; i < 24; i++) {
+    console.log(track_01[0][i]*sprite_width-sprite_width);
+    ctx.drawImage(spritesheet_asphalt, track_01[0][i]*sprite_width-sprite_width, 0, sprite_width, sprite_height, i*128, 0, sprite_width, sprite_height)
   }
 };
 
 draw_spritesheet_tiles('./assets/tiles/sprite_tiles_asphalt.png', 128, 128);
 
-// var i = 14;
-// console.log(Math.floor(track_01[0][i]/10));
-// console.log(Math.round(track_01[0][i]/10));
-// console.log((track_01[0][i]%10)-1);
-
-
-// draw in the index position * the height of the
-
-// works for image 1
-// var i = 0;
-// console.log(Math.round(track_01[0][i]/10));
-// console.log((track_01[0][i]%10)-1);
-
-
+// 10th image is somehow grabbing one of the last
+// ctx.drawImage(spritesheet_asphalt, 9*128, 0, 128, 128, 10, 10, 128, 128);
 
 /////////////////////////////////////////
 ///// animation function
