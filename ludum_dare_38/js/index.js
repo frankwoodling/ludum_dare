@@ -8,15 +8,17 @@ spritesheet_asphalt.src = './assets/tiles/sprite_tiles_asphalt.png';
 var draw_spritesheet_tiles = function(sprite_sheet, sprite_width, sprite_height) {
 
   for(var i = 0; i < 24; i++) {
-    console.log(track_01[0][i]*sprite_width-sprite_width);
-    ctx.drawImage(spritesheet_asphalt, track_01[0][i]*sprite_width-sprite_width, 0, sprite_width, sprite_height, i*128, 0, sprite_width, sprite_height)
+    for (var j = 0; j < 16; j++) {
+      ctx.drawImage(spritesheet_asphalt, track_01[j][i] * sprite_width - sprite_width, 0, sprite_width, sprite_height, i*sprite_width, j*sprite_height, sprite_width, sprite_height)
+    }
   }
 };
 
 draw_spritesheet_tiles('./assets/tiles/sprite_tiles_asphalt.png', 128, 128);
 
-// 10th image is somehow grabbing one of the last
-// ctx.drawImage(spritesheet_asphalt, 9*128, 0, 128, 128, 10, 10, 128, 128);
+// Ideas for physics and traction:
+// Keep a running array of the last few angles and where the car was facing
+// if you try to corner too fast it will use a point in between where you would be with the previous angle and current one making it harder to turn
 
 /////////////////////////////////////////
 ///// animation function
