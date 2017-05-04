@@ -1,4 +1,4 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("canvas_layer_01");
 ctx = canvas.getContext("2d");
 
 spritesheet_asphalt = new Image();
