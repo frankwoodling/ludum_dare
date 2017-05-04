@@ -14,7 +14,7 @@ var draw_spritesheet_tiles = function(sprite_sheet, sprite_width, sprite_height)
   }
 };
 
-draw_spritesheet_tiles('./assets/tiles/sprite_tiles_asphalt.png', 128, 128);
+// draw_spritesheet_tiles('./assets/tiles/sprite_tiles_asphalt.png', 128, 128);
 
 // Ideas for physics and traction:
 // Keep a running array of the last few angles and where the car was facing
