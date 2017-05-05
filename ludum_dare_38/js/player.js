@@ -1,19 +1,30 @@
 car_image = new Image();
-car_image.src = './assets/cars/car_red_1.png';
+//  car_image.src = 'http://i.imgur.com/Bl2p5KI.png';
+car_image.src = './assets/cars/car_red_3.png';
 
 var key_pressed_a = false,
-    key_pressed_d = false,
-    key_pressed_w = false,
-    key_pressed_s = false;
+  key_pressed_d = false,
+  key_pressed_w = false,
+  key_pressed_s = false;
 
 var player_x = 50,
-    player_y = 50,
-    player_speed = 10,
-    player_angle = 0,
-    max_turn_angle = 10; // probably needs to change based on speed
+  player_y = 50,
+  player_speed = 10,
+  player_angle = 0,
+  max_turn_angle = 10; // probably needs to change based on speed
 
 document.addEventListener("keydown", function(e){
   switch(e.keyCode){
+    // case 87 & 65:
+    //   key_pressed_w = true;
+    //   key_pressed_a = true;
+    //   break;
+    //
+    // case 87 & 68:
+    //   key_pressed_w = true;
+    //   key_pressed_d = true;
+    //   break;
+
     case 87:
       key_pressed_w = true;
       break;
@@ -34,12 +45,22 @@ document.addEventListener("keydown", function(e){
 
 document.addEventListener("keyup", function(e) {
   switch(e.keyCode) {
+    case 87 & 65:
+      key_pressed_w = false;
+      key_pressed_a = false;
+      break;
+
+    case 87 & 68:
+      key_pressed_w = false;
+      key_pressed_d = false;
+      break;
+
     case 87:
       key_pressed_w = false;
       break;
 
     case 83:
-      key_pressed_s =false;
+      key_pressed_s = false;
       break;
 
     case 65:
@@ -47,7 +68,7 @@ document.addEventListener("keyup", function(e) {
       break;
 
     case 68:
-      key_pressed_d =false;
+      key_pressed_d = false;
       break;
   }
 }, false);
@@ -59,10 +80,7 @@ window.requestAnimFrame = (function(callback) {
     };
 })();
 
-var render_car = function(car_name, x, y, angle) {
-  ctx.drawImage(car_image, x, y);
-};
-
+// http://stackoverflow.com/a/16546061/6716639
 function render_image(img, x, y, width, height, degrees) {
 
   //Convert degrees to radian
@@ -75,7 +93,9 @@ function render_image(img, x, y, width, height, degrees) {
   ctx.rotate(rad);
 
   //draw the image
+  // ctx.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height); // original
   ctx.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
+
 
   //reset the canvas
   ctx.rotate(rad * ( -1 ) );
@@ -83,13 +103,23 @@ function render_image(img, x, y, width, height, degrees) {
 }
 
 function updateGame() {
-
-  if(key_pressed_w) {
-    player_x += player_speed * Math.sin(player_angle);
-    player_y += player_speed * Math.cos(player_angle);
+  if(key_pressed_w && key_pressed_a) {
+    player_x += player_speed * Math.cos(player_angle * Math.PI / 180);
+    player_y += player_speed * Math.sin(player_angle * Math.PI / 180);
+    // player_angle -= max_turn_angle;
+  }
+  else if(key_pressed_w && key_pressed_d) {
+    player_x += player_speed * Math.cos(player_angle * Math.PI / 180);
+    player_y += player_speed * Math.sin(player_angle * Math.PI / 180);
+    // player_angle += max_turn_angle;
+  }
+  else if(key_pressed_w) {
+    player_x += player_speed * Math.cos(player_angle * Math.PI / 180);
+    player_y += player_speed * Math.sin(player_angle * Math.PI / 180);
   }
   else if(key_pressed_s) {
-    player_y += player_speed;
+    player_x -= (player_speed * 0.5) * Math.cos(player_angle * Math.PI / 180);
+    player_y -= (player_speed * 0.5) * Math.sin(player_angle * Math.PI / 180);
   }
   else if(key_pressed_a) {
     player_angle -= max_turn_angle;
@@ -97,8 +127,6 @@ function updateGame() {
   else if(key_pressed_d) {
     player_angle += max_turn_angle;
   }
-
-  console.log(player_angle);
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
