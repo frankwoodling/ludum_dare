@@ -1,0 +1,4 @@
+1.) Remove event listen from function and try separately
+2.) Add acceleration to car physics
+3.) Add traction to car physics
+4.) turn movement if statements into a switch
