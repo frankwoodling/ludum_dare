@@ -10,48 +10,16 @@ var player_x = 50,
     player_y = 50,
     player_speed = 10,
     player_angle = 0,
-    max_turn_angle = 10; // probably needs to change based on speed
+    max_turn_angle = 5, // probably needs to change based on speed
 
-/*document.addEventListener( "keydown", doKeyDown, true);
-document.addEventListener( "keyup", doKeyUp, true);
+    acceleration_rate_stage_1 = .4,
+    acceleration_rate_stage_2 = .2,
+    acceleration_rate_stage_3 = .1,
 
-function doKeyDown(e) {
-  console.log(e.keyCode);
-  if(e.keyCode == 87) {
-    key_pressed_w = true;
-  }
+    speed_max_stage_1 = 15,
+    speed_max_stage_2 = 20,
+    speed_max_stage_3 = 25;
 
-  if(e.keyCode == 83) {
-    key_pressed_s = true;
-  }
-
-  if(e.keyCode == 65) {
-    key_pressed_a = true;
-  }
-
-  if(e.keyCode == 68) {
-    key_pressed_d = true;
-  }
-}
-
-function doKeyUp(e) {
-  if(e.keyCode == 87) {
-    key_pressed_w = false;
-  }
-
-  if(e.keyCode == 83) {
-    key_pressed_s =  false
-  }
-
-  if(e.keyCode == 65) {
-    key_pressed_a = false;
-  }
-
-  if(e.keyCode == 68) {
-    key_pressed_d = false;
-  }
-}*/
-// old event listener code
 document.addEventListener("keydown", function(e){
   switch(e.keyCode){
     case 87:
@@ -92,10 +60,38 @@ document.addEventListener("keyup", function(e) {
   }
 }, false);
 
+function calculate_position(player_x, player_y) {
+
+}
+
+function calculate_radians(angle) {
+  return angle*(Math.PI / 180);
+}
+
+function acceleration(speed) {
+  if (speed < speed_max_stage_1) {
+    player_speed += acceleration_rate_stage_1;
+  }
+  else if (speed < speed_max_stage_2) {
+    player_speed += acceleration_rate_stage_2;
+  }
+  else if (speed < speed_max_stage_3) {
+    player_speed += acceleration_rate_stage_3;
+  }
+}
+
+function braking(player_speed) {
+
+}
+
+function coasting(player_speed) {
+
+}
+
 window.requestAnimFrame = (function(callback) {
   return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
     function(callback) {
-      window.setTimeout(callback, 1000/60);
+      window.setTimeout(callback, 1000/30);
     };
 })();
 
@@ -103,7 +99,7 @@ window.requestAnimFrame = (function(callback) {
 function render_image(img, x, y, width, height, degrees) {
 
   //Convert degrees to radian
-  var rad = degrees * Math.PI / 180;
+  var rad = calculate_radians(degrees);
 
   //Set the origin to the center of the image
   ctx.translate(x + width / 2, y + height / 2);
@@ -121,13 +117,15 @@ function render_image(img, x, y, width, height, degrees) {
 }
 
 function updateGame() {
+  console.log(player_speed);
   if(key_pressed_w) {
-    player_x += player_speed * Math.cos(player_angle * Math.PI / 180);
-    player_y += player_speed * Math.sin(player_angle * Math.PI / 180);
+    acceleration(player_speed);
+    player_x += player_speed * Math.cos(calculate_radians(player_angle));
+    player_y += player_speed * Math.sin(calculate_radians(player_angle));
   }
   if(key_pressed_s) {
-    player_x -= (player_speed * 0.5) * Math.cos(player_angle * Math.PI / 180);
-    player_y -= (player_speed * 0.5) * Math.sin(player_angle * Math.PI / 180);
+    player_x -= Math.round((player_speed * 0.5) * Math.cos(calculate_radians(player_angle)));
+    player_y -= Math.round((player_speed * 0.5) * Math.sin(calculate_radians(player_angle)));
   }
   if(key_pressed_a) {
     player_angle -= max_turn_angle;
@@ -139,7 +137,9 @@ function updateGame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   render_image(car_image, player_x, player_y, car_image.width, car_image.height, player_angle);
-
+  // console.log('x: ' + player_x);
+  // console.log('y: ' + player_y);
+  // console.log('##############');
   requestAnimFrame(function() {
     updateGame();
   });

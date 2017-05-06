@@ -1,6 +1,9 @@
 var canvas = document.getElementById("canvas_layer_01");
 ctx = canvas.getContext("2d");
 
+canvas.style.width = '900px';
+canvas.style.height = '600px';
+
 spritesheet_asphalt = new Image();
 spritesheet_asphalt.src = './assets/tiles/sprite_tiles_asphalt.png';
 

@@ -1,4 +1,16 @@
-1.) Remove event listen from function and try separately
 2.) Add acceleration to car physics
 3.) Add traction to car physics
 4.) turn movement if statements into a switch
+5.) Car movement seems a bit blurred
+6.) Sounds
+    3 sounds for car engine
+    sand sound
+    dirt sound
+    hitting a rock or edge of the screen sound
+    menu button sounds
+    music
+
+
+################################
+Completed
+1.) Remove event listen from function and try separately
