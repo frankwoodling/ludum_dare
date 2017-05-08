@@ -22,3 +22,7 @@ Completed
 
 grass > track > player > objects
 what is track_01 in index.js?
+
+Ideas for physics and traction:
+Keep a running array of the last few angles and where the car was facing
+if you try to corner too fast it will use a point in between where you would be with the previous angle and current one making it harder to turn

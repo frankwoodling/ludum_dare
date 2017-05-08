@@ -177,7 +177,13 @@ function updateGame() {
   });
 }
 
-updateGame();
+requestAnimFrame(function() {
+  car_image.onload = function() {
+    draw_spritesheet_tiles(ctx_02, spritesheet_asphalt, 128, 128);
+
+  };
+  updateGame();
+});
 
 
 

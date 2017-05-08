@@ -38,13 +38,6 @@ var draw_spritesheet_tiles = function(canvas_context_name, sprite_sheet_image, s
 
 
 
-draw_spritesheet_tiles(ctx_02, spritesheet_asphalt, 128, 128);
-
-
-// Ideas for physics and traction:
-// Keep a running array of the last few angles and where the car was facing
-// if you try to corner too fast it will use a point in between where you would be with the previous angle and current one making it harder to turn
-
 /////////////////////////////////////////
 ///// animation function
 /////////////////////////////////////////
