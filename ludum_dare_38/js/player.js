@@ -8,13 +8,17 @@ var key_pressed_a = false,
 
 var player_x = 50,
     player_y = 50,
-    player_speed = 10,
+    player_speed = 0,
     player_angle = 0,
     max_turn_angle = 5, // probably needs to change based on speed
 
-    acceleration_rate_stage_1 = .4,
+    acceleration_rate_stage_1 = .5,
     acceleration_rate_stage_2 = .2,
     acceleration_rate_stage_3 = .1,
+
+    deceleration_rate_stage_1 = .2,
+    deceleration_rate_stage_2 = .1,
+    deceleration_rate_stage_3 = .1,
 
     speed_max_stage_1 = 15,
     speed_max_stage_2 = 20,
@@ -60,12 +64,13 @@ document.addEventListener("keyup", function(e) {
   }
 }, false);
 
-function calculate_position(player_x, player_y) {
-
-}
 
 function calculate_radians(angle) {
   return angle*(Math.PI / 180);
+}
+
+function round_number(num, decimal_places) {
+
 }
 
 function acceleration(speed) {
@@ -84,7 +89,28 @@ function braking(player_speed) {
 
 }
 
-function coasting(player_speed) {
+function calculate_position(player_x, player_y) {
+
+}
+
+function deceleration(speed) {
+  if (speed >= speed_max_stage_2) {
+    player_speed -= deceleration_rate_stage_1;
+  }
+  else if (speed >= speed_max_stage_1) {
+    player_speed -= acceleration_rate_stage_2;
+  }
+  else if (speed < speed_max_stage_1 && speed > 0) {
+    player_speed -= acceleration_rate_stage_2;
+  }
+
+  if(player_speed < 0) {
+    player_speed = 0;
+  }
+  return player_speed;
+}
+
+function check_speed() {
 
 }
 
@@ -96,27 +122,28 @@ window.requestAnimFrame = (function(callback) {
 })();
 
 // http://stackoverflow.com/a/16546061/6716639
-function render_image(img, x, y, width, height, degrees) {
+function render_image(img, canvas_context_name, x, y, width, height, degrees) {
 
   //Convert degrees to radian
   var rad = calculate_radians(degrees);
 
   //Set the origin to the center of the image
-  ctx.translate(x + width / 2, y + height / 2);
+  canvas_context_name.translate(x + width / 2, y + height / 2);
 
   //Rotate the canvas around the origin
-  ctx.rotate(rad);
+  canvas_context_name.rotate(rad);
 
   //draw the image
-  ctx.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
+  canvas_context_name.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
 
 
   //reset the canvas
-  ctx.rotate(rad * ( -1 ) );
-  ctx.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
+  canvas_context_name.rotate(rad * ( -1 ) );
+  canvas_context_name.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
 }
 
 function updateGame() {
+  player_speed = Math.round(player_speed*10)/10;
   console.log(player_speed);
   if(key_pressed_w) {
     acceleration(player_speed);
@@ -133,10 +160,15 @@ function updateGame() {
   if(key_pressed_d) {
     player_angle += max_turn_angle;
   }
+  if(!key_pressed_w) {
+    deceleration(player_speed);
+    player_x += player_speed * Math.cos(calculate_radians(player_angle));
+    player_y += player_speed * Math.sin(calculate_radians(player_angle));
+  }
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx_03.clearRect(0, 0, canvas_03.width, canvas_03.height);
 
-  render_image(car_image, player_x, player_y, car_image.width, car_image.height, player_angle);
+  render_image(car_image, ctx_03, player_x, player_y, car_image.width, car_image.height, player_angle);
   // console.log('x: ' + player_x);
   // console.log('y: ' + player_y);
   // console.log('##############');

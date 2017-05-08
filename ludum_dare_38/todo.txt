@@ -9,8 +9,16 @@
     hitting a rock or edge of the screen sound
     menu button sounds
     music
+7.) add speedometer
+8.) rounding problem with player speed
 
 
 ################################
 Completed
 1.) Remove event listen from function and try separately
+
+
+
+
+grass > track > player > objects
+what is track_01 in index.js?

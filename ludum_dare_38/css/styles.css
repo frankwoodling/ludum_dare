@@ -1,3 +1,6 @@
-#canvas_layer_01 {
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   border: dotted;
 }
