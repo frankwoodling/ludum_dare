@@ -1,6 +1,9 @@
 canvas {
   position: absolute;
+  /*This makes each canvas very low resolution for some reason*/
+  /*width: 3072px;*/
+  /*height: 2048px;*/
   top: 0;
   left: 0;
-  border: dotted;
+  border: solid;
 }

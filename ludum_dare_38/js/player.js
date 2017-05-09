@@ -6,23 +6,23 @@ var key_pressed_a = false,
     key_pressed_w = false,
     key_pressed_s = false;
 
-var player_x = 50,
-    player_y = 50,
+var player_x = 1150,
+    player_y = 230,
     player_speed = 0,
     player_angle = 0,
-    max_turn_angle = 5, // probably needs to change based on speed
+    max_turn_angle = 3, // probably needs to change based on speed
 
-    acceleration_rate_stage_1 = .5,
-    acceleration_rate_stage_2 = .2,
-    acceleration_rate_stage_3 = .1,
+    acceleration_rate_stage_1 = .25,
+    acceleration_rate_stage_2 = .10,
+    acceleration_rate_stage_3 = .01,
 
-    deceleration_rate_stage_1 = .2,
-    deceleration_rate_stage_2 = .1,
-    deceleration_rate_stage_3 = .1,
+    deceleration_rate_stage_1 = .1,
+    deceleration_rate_stage_2 = .05,
+    deceleration_rate_stage_3 = .05,
 
-    speed_max_stage_1 = 15,
-    speed_max_stage_2 = 20,
-    speed_max_stage_3 = 25;
+    speed_max_stage_1 = 10,
+    speed_max_stage_2 = 15,
+    speed_max_stage_3 = 20;
 
 document.addEventListener("keydown", function(e){
   switch(e.keyCode){
@@ -178,12 +178,18 @@ function updateGame() {
 }
 
 requestAnimFrame(function() {
-  car_image.onload = function() {
-    draw_spritesheet_tiles(ctx_02, spritesheet_asphalt, 128, 128);
+  // window.onload should work for all images, but doesn't
+  // window.onload = function() {
+  //   draw_spritesheet_tiles(ctx_02, spritesheet_asphalt, track_01_asphalt, 128, 128);
+  //   draw_spritesheet_tiles(ctx_01, spritesheet_grass_sand, track_01_grass, 128, 128);
+  // };
 
+  spritesheet_asphalt.onload = function() {
+    render_spritesheet_tiles(ctx_02, spritesheet_asphalt, track_01_asphalt, 128, 128);
   };
+  spritesheet_grass_sand.onload = function() {
+    render_spritesheet_tiles(ctx_01, spritesheet_grass_sand, track_01_grass, 128, 128);
+  };
+  render_object_tiles();
   updateGame();
 });
-
-
-

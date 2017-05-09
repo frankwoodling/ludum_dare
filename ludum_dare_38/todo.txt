@@ -1,4 +1,4 @@
-2.) Add acceleration to car physics
+
 3.) Add traction to car physics
 4.) turn movement if statements into a switch
 5.) Car movement seems a bit blurred
@@ -10,14 +10,18 @@
     menu button sounds
     music
 7.) add speedometer
-8.) rounding problem with player speed
+9.) clean up files
+    main game js file
+    initialize assets js file
+10.) better way to create new images
+11.) turn faster when moving faster
 
 
 ################################
 Completed
 1.) Remove event listen from function and try separately
-
-
+2.) Add acceleration to car physics
+8.) rounding problem with player speed
 
 
 grass > track > player > objects
@@ -26,3 +30,9 @@ what is track_01 in index.js?
 Ideas for physics and traction:
 Keep a running array of the last few angles and where the car was facing
 if you try to corner too fast it will use a point in between where you would be with the previous angle and current one making it harder to turn
+
+For hit detection:
+If car pixel is >= to the pixel of an object and <= to the pixel of an object + 1 then there is a collision
+Since speed and positions are to the hundreds of a pixel it can be in between
+
+

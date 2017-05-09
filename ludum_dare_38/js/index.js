@@ -25,21 +25,63 @@ canvas_04.style.height = '600px';
 spritesheet_asphalt = new Image();
 spritesheet_asphalt.src = './assets/tiles/sprite_tiles_asphalt.png';
 
+spritesheet_grass_sand = new Image();
+spritesheet_grass_sand.src = './assets/tiles/sprite_tiles_grass_sand.png';
+
+sprite_tent_blue_large = new Image();
+sprite_tent_blue_large.src = './assets/tiles/tent_blue_large.png';
+
+sprite_tent_red_large = new Image();
+sprite_tent_red_large.src = './assets/tiles/tent_red_large.png';
+
+sprite_tree_large = new Image();
+sprite_tree_large.src = './assets/tiles/tree_large.png';
+
+sprite_tree_small = new Image();
+sprite_tree_small.src = './assets/tiles/tree_small.png';
+
+sprite_rock1 = new Image();
+sprite_rock1.src = './assets/tiles/rock1.png';
+
+sprite_rock2 = new Image();
+sprite_rock2.src = './assets/tiles/rock2.png';
+
+sprite_rock3 = new Image();
+sprite_rock3.src = './assets/tiles/rock3.png';
+
 // sprite sheet must be horizontal
-var draw_spritesheet_tiles = function(canvas_context_name, sprite_sheet_image, sprite_width, sprite_height) {
+var render_spritesheet_tiles = function(canvas_context_name, sprite_sheet_name, tile_file_var, sprite_width, sprite_height) {
 
   for(var i = 0; i < 24; i++) {
     for (var j = 0; j < 16; j++) {
       // context.drawImage(image_source, source_x, source_y, source_width, source_height, destination_x, destination_y, destination_width, destination_height)
-      canvas_context_name.drawImage(spritesheet_asphalt, track_01[j][i] * sprite_width - sprite_width, 0, sprite_width, sprite_height, i*sprite_width, j*sprite_height, sprite_width, sprite_height)
+      canvas_context_name.drawImage(sprite_sheet_name, tile_file_var[j][i] * sprite_width - sprite_width, 0, sprite_width, sprite_height, i*sprite_width, j*sprite_height, sprite_width, sprite_height)
     }
   }
 };
 
+var render_object_tiles = function() {
+  sprite_tree_large.onload = function() {
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 128, 40, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 25, 280, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1700, 500, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 2050, 450, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1975, 600, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1300, 1800, 214, 212);
+  };
 
+  sprite_tent_blue_large.onload = function() {
+    ctx_04.drawImage(sprite_tent_blue_large, 0, 0, 256, 256, 2700, 475, 214, 212);
+    ctx_04.drawImage(sprite_tent_blue_large, 0, 0, 256, 256, 2700, 1275, 214, 212);
+  };
 
+  sprite_tent_red_large.onload = function() {
+    ctx_04.drawImage(sprite_tent_red_large, 0, 0, 256, 256, 2700, 875, 214, 212);
+  };
+
+};
 /////////////////////////////////////////
-///// animation function
+///// animation function ////////////////
 /////////////////////////////////////////
 
 // var width = 100,
