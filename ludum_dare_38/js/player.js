@@ -14,11 +14,15 @@ var player_x = 1150,
 
     acceleration_rate_stage_1 = .25,
     acceleration_rate_stage_2 = .10,
-    acceleration_rate_stage_3 = .01,
+    acceleration_rate_stage_3 = .02,
 
     deceleration_rate_stage_1 = .1,
     deceleration_rate_stage_2 = .05,
-    deceleration_rate_stage_3 = .05,
+
+    braking_rate_stage_1 = .3,
+    braking_rate_stage_2 = .15,
+
+    speed_max_reverse = 5,
 
     speed_max_stage_1 = 10,
     speed_max_stage_2 = 15,
@@ -85,8 +89,20 @@ function acceleration(speed) {
   }
 }
 
-function braking(player_speed) {
+function braking(speed) {
+  if (speed >= speed_max_stage_2) {
+    player_speed -= braking_rate_stage_1;
+  }
+  else if (speed >= speed_max_stage_1) {
+    player_speed -= braking_rate_stage_2;
+  }
+  else if (speed < speed_max_stage_1 && speed > 0) {
+    player_speed -= braking_rate_stage_2;
+  }
 
+  // if(player_speed <= 0) {
+  //   player_speed = speed_max_reverse;
+  // }
 }
 
 function calculate_position(player_x, player_y) {
@@ -98,16 +114,15 @@ function deceleration(speed) {
     player_speed -= deceleration_rate_stage_1;
   }
   else if (speed >= speed_max_stage_1) {
-    player_speed -= acceleration_rate_stage_2;
+    player_speed -= deceleration_rate_stage_2;
   }
   else if (speed < speed_max_stage_1 && speed > 0) {
-    player_speed -= acceleration_rate_stage_2;
+    player_speed -= deceleration_rate_stage_2;
   }
 
   if(player_speed < 0) {
     player_speed = 0;
   }
-  return player_speed;
 }
 
 function check_speed() {
@@ -143,7 +158,7 @@ function render_image(img, canvas_context_name, x, y, width, height, degrees) {
 }
 
 function updateGame() {
-  player_speed = Math.round(player_speed*10)/10;
+  player_speed = Math.round(player_speed*100)/100;
   console.log(player_speed);
   if(key_pressed_w) {
     acceleration(player_speed);
@@ -151,8 +166,9 @@ function updateGame() {
     player_y += player_speed * Math.sin(calculate_radians(player_angle));
   }
   if(key_pressed_s) {
-    player_x -= Math.round((player_speed * 0.5) * Math.cos(calculate_radians(player_angle)));
-    player_y -= Math.round((player_speed * 0.5) * Math.sin(calculate_radians(player_angle)));
+    braking(player_speed);
+    player_x += player_speed * Math.cos(calculate_radians(player_angle));
+    player_y += player_speed * Math.sin(calculate_radians(player_angle));
   }
   if(key_pressed_a) {
     player_angle -= max_turn_angle;
@@ -160,7 +176,7 @@ function updateGame() {
   if(key_pressed_d) {
     player_angle += max_turn_angle;
   }
-  if(!key_pressed_w) {
+  if(!key_pressed_w && !key_pressed_s) {
     deceleration(player_speed);
     player_x += player_speed * Math.cos(calculate_radians(player_angle));
     player_y += player_speed * Math.sin(calculate_radians(player_angle));
