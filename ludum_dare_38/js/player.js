@@ -1,6 +1,9 @@
 car_image = new Image();
 car_image.src = './assets/cars/car_red_3.png';
 
+car_collision = new Image();
+car_collision.src = './assets/collision/car_red_3_collision.png';
+
 var key_pressed_a = false,
     key_pressed_d = false,
     key_pressed_w = false,
@@ -99,10 +102,6 @@ function braking(speed) {
   else if (speed < speed_max_stage_1 && speed > 0) {
     player_speed -= braking_rate_stage_2;
   }
-
-  // if(player_speed <= 0) {
-  //   player_speed = speed_max_reverse;
-  // }
 }
 
 function calculate_position(player_x, player_y) {
@@ -183,8 +182,10 @@ function updateGame() {
   }
 
   ctx_03.clearRect(0, 0, canvas_03.width, canvas_03.height);
+  ctx_05.clearRect(0, 0, canvas_05.width, canvas_05.height);
 
   render_image(car_image, ctx_03, player_x, player_y, car_image.width, car_image.height, player_angle);
+  render_image(car_collision, ctx_05, player_x, player_y, car_collision.width, car_collision.height, player_angle);
   // console.log('x: ' + player_x);
   // console.log('y: ' + player_y);
   // console.log('##############');

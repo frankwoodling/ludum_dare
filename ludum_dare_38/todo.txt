@@ -1,4 +1,3 @@
-
 3.) Add traction to car physics
 4.) turn movement if statements into a switch
 5.) Car movement seems a bit blurred
@@ -15,7 +14,8 @@
     initialize assets js file
 10.) better way to create new images
 11.) turn faster when moving faster
-
+12.) make variable for canvas width/height
+13.) break main game loop into it's own file
 
 ################################
 Completed
