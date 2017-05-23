@@ -138,60 +138,22 @@ window.requestAnimFrame = (function(callback) {
 // http://stackoverflow.com/a/16546061/6716639
 function render_image(img, canvas_context_name, x, y, width, height, degrees) {
 
-  //Convert degrees to radian
+  // Convert degrees to radian
   var rad = calculate_radians(degrees);
 
-  //Set the origin to the center of the image
+  // Set the origin to the center of the image
   canvas_context_name.translate(x + width / 2, y + height / 2);
 
-  //Rotate the canvas around the origin
+  // Rotate the canvas around the origin
   canvas_context_name.rotate(rad);
 
-  //draw the image
+  // Draw the image
   canvas_context_name.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
 
 
   //reset the canvas
   canvas_context_name.rotate(rad * ( -1 ) );
   canvas_context_name.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
-}
-
-function updateGame() {
-  player_speed = Math.round(player_speed*100)/100;
-  console.log(player_speed);
-  if(key_pressed_w) {
-    acceleration(player_speed);
-    player_x += player_speed * Math.cos(calculate_radians(player_angle));
-    player_y += player_speed * Math.sin(calculate_radians(player_angle));
-  }
-  if(key_pressed_s) {
-    braking(player_speed);
-    player_x += player_speed * Math.cos(calculate_radians(player_angle));
-    player_y += player_speed * Math.sin(calculate_radians(player_angle));
-  }
-  if(key_pressed_a) {
-    player_angle -= max_turn_angle;
-  }
-  if(key_pressed_d) {
-    player_angle += max_turn_angle;
-  }
-  if(!key_pressed_w && !key_pressed_s) {
-    deceleration(player_speed);
-    player_x += player_speed * Math.cos(calculate_radians(player_angle));
-    player_y += player_speed * Math.sin(calculate_radians(player_angle));
-  }
-
-  ctx_03.clearRect(0, 0, canvas_03.width, canvas_03.height);
-  ctx_05.clearRect(0, 0, canvas_05.width, canvas_05.height);
-
-  render_image(car_image, ctx_03, player_x, player_y, car_image.width, car_image.height, player_angle);
-  render_image(car_collision, ctx_05, player_x, player_y, car_collision.width, car_collision.height, player_angle);
-  // console.log('x: ' + player_x);
-  // console.log('y: ' + player_y);
-  // console.log('##############');
-  requestAnimFrame(function() {
-    updateGame();
-  });
 }
 
 requestAnimFrame(function() {

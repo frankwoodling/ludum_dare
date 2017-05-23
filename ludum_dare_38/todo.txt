@@ -9,19 +9,19 @@
     menu button sounds
     music
 7.) add speedometer
-9.) clean up files
-    main game js file
-    initialize assets js file
 10.) better way to create new images
 11.) turn faster when moving faster
 12.) make variable for canvas width/height
-13.) break main game loop into it's own file
+13.) all images need to be in an onload function
 
 ################################
 Completed
 1.) Remove event listen from function and try separately
 2.) Add acceleration to car physics
 8.) rounding problem with player speed
+9.) clean up files
+    main game js file
+    initialize assets js file
 
 
 grass > track > player > objects
