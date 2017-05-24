@@ -1,6 +1,6 @@
 function updateGame() {
   player_speed = Math.round(player_speed*100)/100;
-  console.log(player_speed);
+
   if(key_pressed_w) {
     acceleration(player_speed);
     player_x += player_speed * Math.cos(calculate_radians(player_angle));
@@ -28,22 +28,28 @@ function updateGame() {
   ctx_06.clearRect(0, 0, canvas_06.width, canvas_06.height);
 
   render_image(car_image, ctx_03, player_x, player_y, car_image.width, car_image.height, player_angle);
-  render_image(car_collision, ctx_05, player_x, player_y, car_collision.width, car_collision.height, player_angle);
-
-  // test for center of car
-  // player_x and player_y are top left of car
-  // delete when done
-  var radius = 10;
-  ctx_06.beginPath();
-  ctx_06.arc(player_x + car_image.width/2, player_y + car_image.height/2, radius, 0, 2 * Math.PI, false);
-  ctx_06.fillStyle = 'black';
-  ctx_06.fill();
-  ctx_06.lineWidth = 5;
-  ctx_06.strokeStyle = '#003300';
-  ctx_06.stroke();
-  ///////////
+  // print_hex_at_top_left_of_car(player_x, player_y);
+  // draw_collision_box();
+  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y, player_angle, 5);
+  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y, player_angle, 5);
+  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y+car_image.height, player_angle, 5);
+  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y+car_image.height, player_angle, 5);
 
   requestAnimFrame(function() {
     updateGame();
   });
 }
+
+window.requestAnimFrame = (function(callback) {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    function(callback) {
+      window.setTimeout(callback, 1000/20);
+    };
+})();
+
+
+// Begin main game loop
+requestAnimFrame(function() {
+  render_object_tiles();
+  updateGame();
+});

@@ -1,9 +1,3 @@
-car_image = new Image();
-car_image.src = './assets/cars/car_red_3.png';
-
-car_collision = new Image();
-car_collision.src = './assets/collision/car_red_3_collision.png';
-
 var key_pressed_a = false,
     key_pressed_d = false,
     key_pressed_w = false,
@@ -13,7 +7,7 @@ var player_x = 1150,
     player_y = 230,
     player_speed = 0,
     player_angle = 0,
-    max_turn_angle = 3, // probably needs to change based on speed
+    max_turn_angle = 3, // may need to change based on speed
 
     acceleration_rate_stage_1 = .25,
     acceleration_rate_stage_2 = .10,
@@ -29,7 +23,10 @@ var player_x = 1150,
 
     speed_max_stage_1 = 10,
     speed_max_stage_2 = 15,
-    speed_max_stage_3 = 20;
+    speed_max_stage_3 = 20,
+
+    size_of_car_collision_box = Math.max(car_image.width, car_image.height);
+
 
 document.addEventListener("keydown", function(e){
   switch(e.keyCode){
@@ -128,47 +125,7 @@ function check_speed() {
 
 }
 
-window.requestAnimFrame = (function(callback) {
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-    function(callback) {
-      window.setTimeout(callback, 1000/30);
-    };
-})();
-
-// http://stackoverflow.com/a/16546061/6716639
-function render_image(img, canvas_context_name, x, y, width, height, degrees) {
-
-  // Convert degrees to radian
-  var rad = calculate_radians(degrees);
-
-  // Set the origin to the center of the image
-  canvas_context_name.translate(x + width / 2, y + height / 2);
-
-  // Rotate the canvas around the origin
-  canvas_context_name.rotate(rad);
-
-  // Draw the image
-  canvas_context_name.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
 
 
-  //reset the canvas
-  canvas_context_name.rotate(rad * ( -1 ) );
-  canvas_context_name.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
-}
 
-requestAnimFrame(function() {
-  // window.onload should work for all images, but doesn't
-  // window.onload = function() {
-  //   draw_spritesheet_tiles(ctx_02, spritesheet_asphalt, track_01_asphalt, 128, 128);
-  //   draw_spritesheet_tiles(ctx_01, spritesheet_grass_sand, track_01_grass, 128, 128);
-  // };
 
-  spritesheet_asphalt.onload = function() {
-    render_spritesheet_tiles(ctx_02, spritesheet_asphalt, track_01_asphalt, 128, 128);
-  };
-  spritesheet_grass_sand.onload = function() {
-    render_spritesheet_tiles(ctx_01, spritesheet_grass_sand, track_01_grass, 128, 128);
-  };
-  render_object_tiles();
-  updateGame();
-});

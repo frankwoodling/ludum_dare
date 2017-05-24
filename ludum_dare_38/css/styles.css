@@ -1,9 +1,14 @@
 canvas {
   position: absolute;
-  /*This makes each canvas very low resolution for some reason*/
-  /*width: 3072px;*/
-  /*height: 2048px;*/
   top: 0;
   left: 0;
   border: solid;
+}
+
+#canvas_layer_05_car_collision {
+  opacity: .5;
+}
+
+#canvas_layer_06_track_collision {
+  opacity: 1;
 }

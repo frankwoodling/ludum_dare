@@ -1,3 +1,9 @@
+car_image = new Image();
+car_image.src = './assets/cars/car_red_3.png';
+
+track_collision = new Image();
+track_collision.src = './assets/collision/track_01_collision.png';
+
 spritesheet_asphalt = new Image();
 spritesheet_asphalt.src = './assets/tiles/sprite_tiles_asphalt.png';
 
