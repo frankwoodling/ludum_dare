@@ -13,11 +13,8 @@ ctx_03 = canvas_03.getContext('2d');
 var canvas_04 = document.getElementById('canvas_layer_04_objects');
 ctx_04 = canvas_04.getContext('2d');
 
-var canvas_05 = document.getElementById('canvas_layer_05_car_collision');
+var canvas_05 = document.getElementById('canvas_layer_05_track_collision_map');
 ctx_05 = canvas_05.getContext('2d');
-
-var canvas_06 = document.getElementById('canvas_layer_06_track_collision');
-ctx_06 = canvas_06.getContext('2d');
 
 canvas_01.style.width = canvas_width;
 canvas_01.style.height = canvas_height;
@@ -33,6 +30,3 @@ canvas_04.style.height = canvas_height;
 
 canvas_05.style.width = canvas_width;
 canvas_05.style.height = canvas_height;
-
-canvas_06.style.width = canvas_width;
-canvas_06.style.height = canvas_height;

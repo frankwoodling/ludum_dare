@@ -56,8 +56,6 @@ spritesheet_grass_sand.onload = function() {
   render_spritesheet_tiles(ctx_01, spritesheet_grass_sand, track_01_grass, 128, 128);
 };
 
-
-
-// track_collision.onload = function() {
-//   ctx_06.drawImage(track_collision, 0, 0, 3072, 2048);
-// };
+track_collision.onload = function() {
+  ctx_05.drawImage(track_collision, 0, 0, 3072, 2048);
+};

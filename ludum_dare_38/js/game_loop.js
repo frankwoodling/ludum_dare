@@ -24,16 +24,17 @@ function updateGame() {
   }
 
   ctx_03.clearRect(0, 0, canvas_03.width, canvas_03.height);
-  ctx_05.clearRect(0, 0, canvas_05.width, canvas_05.height);
-  ctx_06.clearRect(0, 0, canvas_06.width, canvas_06.height);
+  // ctx_05.clearRect(0, 0, canvas_05.width, canvas_05.height);
+  // ctx_06.clearRect(0, 0, canvas_06.width, canvas_06.height);
 
   render_image(car_image, ctx_03, player_x, player_y, car_image.width, car_image.height, player_angle);
-  // print_hex_at_top_left_of_car(player_x, player_y);
-  // draw_collision_box();
-  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y, player_angle, 5);
-  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y, player_angle, 5);
-  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y+car_image.height, player_angle, 5);
-  rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y+car_image.height, player_angle, 5);
+
+  top_left_collision_point = rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y, player_angle);
+  top_right_collision_point = rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y, player_angle);
+  bot_left_collision_point = rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y+car_image.height, player_angle);
+  bot_right_collision_point = rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y+car_image.height, player_angle);
+
+  check_for_collision(top_left_collision_point);
 
   requestAnimFrame(function() {
     updateGame();

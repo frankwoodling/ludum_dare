@@ -5,10 +5,6 @@ canvas {
   border: solid;
 }
 
-#canvas_layer_05_car_collision {
+#canvas_layer_05_track_collision_map {
   opacity: .5;
-}
-
-#canvas_layer_06_track_collision {
-  opacity: 1;
 }

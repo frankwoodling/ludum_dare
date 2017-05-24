@@ -19,13 +19,14 @@ var player_x = 1150,
     braking_rate_stage_1 = .3,
     braking_rate_stage_2 = .15,
 
-    speed_max_reverse = 5,
-
     speed_max_stage_1 = 10,
     speed_max_stage_2 = 15,
     speed_max_stage_3 = 20,
 
-    size_of_car_collision_box = Math.max(car_image.width, car_image.height);
+    top_left_collision_point,
+    top_right_collision_point,
+    bot_left_collision_point,
+    bot_right_collision_point;
 
 
 document.addEventListener("keydown", function(e){
@@ -101,10 +102,6 @@ function braking(speed) {
   }
 }
 
-function calculate_position(player_x, player_y) {
-
-}
-
 function deceleration(speed) {
   if (speed >= speed_max_stage_2) {
     player_speed -= deceleration_rate_stage_1;
@@ -119,10 +116,6 @@ function deceleration(speed) {
   if(player_speed < 0) {
     player_speed = 0;
   }
-}
-
-function check_speed() {
-
 }
 
 
