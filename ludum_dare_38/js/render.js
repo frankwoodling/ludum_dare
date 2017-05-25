@@ -30,21 +30,25 @@ var render_spritesheet_tiles = function(canvas_context_name, sprite_sheet_name, 
 
 var render_object_tiles = function() {
   sprite_tree_large.onload = function() {
-    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 128, 40, 214, 212);
-    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 25, 280, 214, 212);
-    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1700, 500, 214, 212);
-    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 2050, 450, 214, 212);
-    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1975, 600, 214, 212);
-    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1300, 1800, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 127, 33, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 3, 300, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1671, 430, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 2052, 419, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1920, 549, 214, 212);
+    ctx_04.drawImage(sprite_tree_large, 0, 0, 214, 212, 1280, 1840, 214, 212);
   };
 
+  sprite_tree_small.onload = function() {
+    ctx_04.drawImage(sprite_tree_small, 0, 0, 141, 141, 1670, 1780, 135, 141)
+  }
+
   sprite_tent_blue_large.onload = function() {
-    ctx_04.drawImage(sprite_tent_blue_large, 0, 0, 256, 256, 2700, 475, 214, 212);
-    ctx_04.drawImage(sprite_tent_blue_large, 0, 0, 256, 256, 2700, 1275, 214, 212);
+    ctx_04.drawImage(sprite_tent_blue_large, 0, 0, 256, 256, 2688, 384, 256, 256);
+    ctx_04.drawImage(sprite_tent_blue_large, 0, 0, 256, 256, 2688, 1408, 256, 256);
   };
 
   sprite_tent_red_large.onload = function() {
-    ctx_04.drawImage(sprite_tent_red_large, 0, 0, 256, 256, 2700, 875, 214, 212);
+    ctx_04.drawImage(sprite_tent_red_large, 0, 0, 256, 256, 2688, 896, 256, 256);
   };
 };
 
@@ -56,6 +60,6 @@ spritesheet_grass_sand.onload = function() {
   render_spritesheet_tiles(ctx_01, spritesheet_grass_sand, track_01_grass, 128, 128);
 };
 
-// track_collision.onload = function() {
-//   ctx_05.drawImage(track_collision, 0, 0, 3072, 2048);
-// };
+track_collision.onload = function() {
+  ctx_05.drawImage(track_collision, 0, 0, 3072, 2048);
+};

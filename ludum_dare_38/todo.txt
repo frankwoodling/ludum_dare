@@ -14,7 +14,7 @@
 13.) all images need to be in an onload function
 15.) Why is updateGame called in both player.js and game_loop.js
 16.) Move trees and tents to correct spot for collision map
-17.) Would it be higher performance to use RBG values instead of converting to hex code?
+
 
 ################################
 Completed
@@ -26,9 +26,8 @@ Completed
     initialize assets js file
 12.) make variable for canvas width/height
 14.) Should probably pull spritesheet tiles out of requestAnimFrame.  Is this being drawn each frame?
-
-grass > track > player > objects
-what is track_01 in index.js?
+17.) Would it be higher performance to use RBG values instead of converting to hex code?
+18.) Rearrange drawn objects to match collision map
 
 Ideas for physics and traction:
 Keep a running array of the last few angles and where the car was facing
