@@ -26,10 +26,12 @@ var player_x = 1150,
     top_left_collision_point,
     top_right_collision_point,
     bot_left_collision_point,
-    bot_right_collision_point;
+    bot_right_collision_point,
 
+    previous_player_x,
+    previous_player_y;
 
-document.addEventListener("keydown", function(e){
+document.addEventListener("keydown", function(e) {
   switch(e.keyCode){
     case 87:
       key_pressed_w = true;

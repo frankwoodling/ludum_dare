@@ -30,3 +30,24 @@ canvas_04.style.height = canvas_height;
 
 canvas_05.style.width = canvas_width;
 canvas_05.style.height = canvas_height;
+
+// this will change the games resolution on click
+/*
+document.addEventListener("click", enlarge_canvas, false);
+
+function enlarge_canvas() {
+  canvas_01.style.width = '1350px';
+  canvas_01.style.height = '900px';
+
+  canvas_02.style.width = '1350px';
+  canvas_02.style.height = '900px';
+
+  canvas_03.style.width = '1350px';
+  canvas_03.style.height = '900px';
+
+  canvas_04.style.width = '1350px';
+  canvas_04.style.height = '900px';
+
+  canvas_05.style.width = '1350px';
+  canvas_05.style.height = '900px';
+}*/

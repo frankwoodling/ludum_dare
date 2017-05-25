@@ -1,6 +1,9 @@
 function updateGame() {
   player_speed = Math.round(player_speed*100)/100;
 
+  // previous_player_x = player_x;
+  // previous_player_y = player_y;
+
   if(key_pressed_w) {
     acceleration(player_speed);
     player_x += player_speed * Math.cos(calculate_radians(player_angle));
@@ -24,8 +27,7 @@ function updateGame() {
   }
 
   ctx_03.clearRect(0, 0, canvas_03.width, canvas_03.height);
-  // ctx_05.clearRect(0, 0, canvas_05.width, canvas_05.height);
-  // ctx_06.clearRect(0, 0, canvas_06.width, canvas_06.height);
+  ctx_05.clearRect(0, 0, canvas_05.width, canvas_05.height);
 
   render_image(car_image, ctx_03, player_x, player_y, car_image.width, car_image.height, player_angle);
 
@@ -34,7 +36,12 @@ function updateGame() {
   bot_left_collision_point = rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x, player_y+car_image.height, player_angle);
   bot_right_collision_point = rotate_collision_points(player_x+car_image.width/2, player_y+car_image.height/2, player_x+car_image.width, player_y+car_image.height, player_angle);
 
-  check_for_collision(top_left_collision_point);
+  // check_for_collision(top_left_collision_point);
+
+  project_path(top_left_collision_point);
+  project_path(top_right_collision_point);
+  project_path(bot_left_collision_point);
+  project_path(bot_right_collision_point);
 
   requestAnimFrame(function() {
     updateGame();
@@ -54,3 +61,6 @@ requestAnimFrame(function() {
   render_object_tiles();
   updateGame();
 });
+
+
+

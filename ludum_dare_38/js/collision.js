@@ -30,25 +30,58 @@ function rotate_collision_points(cx, cy, x, y, angle) {
   var collision_point_x = rotatedX + cx;
   var collision_point_y = rotatedY + cy;
 
+  // ctx_05.beginPath();
+  // ctx_05.arc(collision_point_x, collision_point_y, 5, 0, 2 * Math.PI, false);
+  // ctx_05.fillStyle = 'green';
+  // ctx_05.fill();
+  // ctx_05.lineWidth = 5;
+  // ctx_05.strokeStyle = '#003300';
+  // ctx_05.stroke();
+
   return [Math.round(collision_point_x), Math.round(collision_point_y)]
 }
 
-// Takes an array with x and y coordinates and compares it to a point on the collision map on ctx_05 to find out if
-// there is a collision.  Function will use hex codes to determine what type of collision occurred.
-// TODO: list hexcode colors used
-// TODO: is it faster to use hexcode or rbg values?
-function check_for_collision(collision_point) {
+// collision_point: array with x and y coordinate
+// returns the RBG color values of a single pixel
+function get_pixel_data(collision_point) {
   var pixel_rbg = ctx_05.getImageData(collision_point[0], collision_point[1], 1, 1).data;
-  // console.log(rgbToHex(pixel_rbg))
-  var b = rgbToHex(pixel_rbg[0], pixel_rbg[1], pixel_rbg[2]);
-  console.log(b);
+
+  return [pixel_rbg[0], pixel_rbg[1], pixel_rbg[2]]
 }
 
-function rgbToHex(r, g, b){
-  if (r > 255 || g > 255 || b > 255)
-    throw "Invalid color component";
-  return ((r << 16) | (g << 8) | b).toString(16);
+function check_for_collision(collision_point) {
+  var pix = get_pixel_data(collision_point);
+
+  // if(pix[0] == 0 && pix[1] == 0 && pix[2] == 0) {
+  //   player_x = previous_player_x;
+  //   player_y = previous_player_y;
+  // }
 }
+
+function project_path(point_to_project) {
+  for(var i = 20; i > -20; i--) {
+    var test = rotate_collision_points(bot_right_collision_point);
+
+    var projection_player_x = point_to_project[0] + i * Math.cos(calculate_radians(player_angle));
+    var projection_player_y =  point_to_project[1] + i * Math.sin(calculate_radians(player_angle));
+    draw_project_path(projection_player_x, projection_player_y);
+  }
+}
+
+function draw_project_path(x, y) {
+  ctx_05.beginPath();
+  ctx_05.arc(x, y, 5, 0, 2 * Math.PI, false);
+  ctx_05.fillStyle = 'green';
+  ctx_05.fill();
+  ctx_05.lineWidth = 5;
+  ctx_05.strokeStyle = '#003300';
+  ctx_05.stroke();
+}
+
+// !!! when checking for every pixel in between keep track of the previous pixel and stop checking once the first one collides
+// you can then place the car at that position and end the function
+// also record and check top left position so you know where to move the car to
+// should check negative positions too in case something gets missed
 
 // ctx_06.beginPath();
 // ctx_06.arc(x, y, radius, 0, 2 * Math.PI, false);
